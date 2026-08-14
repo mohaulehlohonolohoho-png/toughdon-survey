@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToughDon Community Survey 2026</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --accent: #f59e0b;
+      --bg: #f3f4f6;
+      --card-bg: #ffffff;
+      --text: #1f2937;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 20px 10px;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .brand {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: 1px;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background-color: var(--border);
+      border-radius: 3px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: var(--primary);
+      width: 16.6%;
+      transition: width 0.3s ease;
+    }
+
+    .step {
+      display: none;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    p.step-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    select, input[type="text"], input[type="tel"], input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 15px;
+      background-color: #fff;
+      outline: none;
+    }
+
+    select:focus, input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.1);
+    }
+
+    .options-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .option-btn:hover {
+      background-color: #f9fafb;
+    }
+
+    .option-btn input {
+      margin-right: 12px;
+      accent-color: var(--primary);
+    }
+
+    .notice-box {
+      background-color: #eff6ff;
+      border-left: 4px solid var(--primary);
+      padding: 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #1e40af;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .notice-box.orange {
+      background-color: #fffbebfb;
+      border-left-color: var(--accent);
+      color: #b45309;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 20px;
+    }
+
+    button.btn {
+      flex: 1;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #1d4ed8;
+    }
+
+    .btn-secondary {
+      background-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background-color: #d1d5db;
+    }
+
+    .btn-accent {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    .btn-accent:hover {
+      background-color: #d97706;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="brand">TOUGHDON</div>
+    <div class="tagline">Your voice. Your community. Our development.</div>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+
+  <!-- Page 1: Welcome -->
+  <div class="step active" id="step-1">
+    <h2>Welcome to the 2026 Survey</h2>
+    <p class="step-desc">Help ToughDon map local skills, priorities, and community needs so we can build targeted programs and opportunities.</p>
+
+    <div class="notice-box">
+      🛡️ <strong>100% Anonymous:</strong> Pages 1 to 5 collect general community statistics. No names or personal contact details are tied to your statistical answers.
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-primary" onclick="nextStep()">Start Survey →</button>
+    </div>
+  </div>
+
+  <!-- Page 2: Demographics -->
+  <div class="step" id="step-2">
+    <h2>About You</h2>
+    <p class="step-desc">Help us ensure all areas and age groups are fairly represented.</p>
+
+    <div class="form-group">
+      <label for="area">Community / Area Zone</label>
+      <select id="area">
+        <option value="">Select your area...</option>
+        <option value="zone1">Zone 1 / Central</option>
+        <option value="zone2">Zone 2 / North</option>
+        <option value="zone3">Zone 3 / South</option>
+        <option value="zone4">Zone 4 / East</option>
+        <option value="zone5">Zone 5 / West</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Age Category</label>
+      <div class="options-group">
+        <label class="option-btn"><input type="radio" name="age" value="under18"> Under 18</label>
+        <label class="option-btn"><input type="radio" name="age" value="18-24"> 18 – 24</label>
+        <label class="option-btn"><input type="radio" name="age" value="25-34"> 25 – 34</label>
+        <label class="option-btn"><input type="radio" name="age" value="35-49"> 35 – 49</label>
+        <label class="option-btn"><input type="radio" name="age" value="50+"> 50+</label>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+      <button class="btn btn-primary" onclick="nextStep()">Next →</button>
+    </div>
+  </div>
+
+  <!-- Page 3: Employment -->
+  <div class="step" id="step-3">
+    <h2>Employment & Skills</h2>
+    <p class="step-desc">Tell us about your current status and core practical skills.</p>
+
+    <div class="form-group">
+      <label for="employment">Current Employment Status</label>
+      <select id="employment">
+        <option value="">Select status...</option>
+        <option value="unemployed">Unemployed (Seeking work)</option>
+        <option value="fulltime">Employed Full-time</option>
+        <option value="parttime">Part-time / Informal Work</option>
+        <option value="self-employed">Self-Employed / Business Owner</option>
+        <option value="student">Student / Learner</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Primary Skills (Select up to 2)</label>
+      <div class="options-group">
+        <label class="option-btn"><input type="checkbox" name="skill" value="admin"> Administration / Office</label>
+        <label class="option-btn"><input type="checkbox" name="skill" value="construction"> Construction / Trades</label>
+        <label class="option-btn"><input type="checkbox" name="skill" value="retail"> Retail & Customer Service</label>
+        <label class="option-btn"><input type="checkbox" name="skill" value="agriculture"> Agriculture & Farming</label>
+        <label class="option-btn"><input type="checkbox" name="skill" value="tech"> IT & Digital Skills</label>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+      <button class="btn btn-primary" onclick="nextStep()">Next →</button>
+    </div>
+  </div>
+
+  <!-- Page 4: Food Security -->
+  <div class="step" id="step-4">
+    <h2>Food Security & Farming</h2>
+    <p class="step-desc">Understanding household needs and local production interest.</p>
+
+    <div class="form-group">
+      <label>In the past month, did your household worry about running out of food?</label>
+      <div class="options-group">
+        <label class="option-btn"><input type="radio" name="food_worry" value="never"> Never</label>
+        <label class="option-btn"><input type="radio" name="food_worry" value="sometimes"> Sometimes</label>
+        <label class="option-btn"><input type="radio" name="food_worry" value="frequently"> Frequently</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Would you participate in a local food garden or farming project?</label>
+      <div class="options-group">
+        <label class="option-btn"><input type="radio" name="farm_interest" value="yes"> Yes, very interested</label>
+        <label class="option-btn"><input type="radio" name="farm_interest" value="maybe"> Maybe</label>
+        <label class="option-btn"><input type="radio" name="farm_interest" value="no"> No</label>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+      <button class="btn btn-primary" onclick="nextStep()">Next →</button>
+    </div>
+  </div>
+
+  <!-- Page 5: Development Priorities -->
+  <div class="step" id="step-5">
+    <h2>Community Priorities</h2>
+    <p class="step-desc">Select your TOP 3 priorities for ToughDon's development focus.</p>
+
+    <div class="form-group">
+      <div class="options-group">
+        <label class="option-btn"><input type="checkbox" name="priority" value="youth"> Youth Employment & Skills</label>
+        <label class="option-btn"><input type="checkbox" name="priority" value="smme"> Small Business (SMME) Support</label>
+        <label class="option-btn"><input type="checkbox" name="priority" value="food"> Food Security & Farming</label>
+        <label class="option-btn"><input type="checkbox" name="priority" value="infrastructure"> Roads & Infrastructure</label>
+        <label class="option-btn"><input type="checkbox" name="priority" value="education"> Education & Access</label>
+        <label class="option-btn"><input type="checkbox" name="priority" value="safety"> Community Safety</label>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+      <button class="btn btn-accent" onclick="submitAnonymousData()">Submit Answers (Dataset A)</button>
+    </div>
+  </div>
+
+  <!-- Page 6: Optional Opportunity Register -->
+  <div class="step" id="step-6">
+    <h2>Opportunity Register</h2>
+    <p class="step-desc">Optional: Register your details if you want ToughDon to contact you for opportunities.</p>
+
+    <div class="notice-box orange">
+      🔐 <strong>Separate Dataset:</strong> These contact details are stored in a distinct database (Dataset B) strictly for direct outreach.
+    </div>
+
+    <div class="form-group">
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" placeholder="e.g. Jane Doe">
+    </div>
+
+    <div class="form-group">
+      <label for="phone">WhatsApp / Phone Number</label>
+      <input type="tel" id="phone" placeholder="e.g. 082 123 4567">
+    </div>
+
+    <div class="form-group">
+      <label>Interested In:</label>
+      <div class="options-group">
+        <label class="option-btn"><input type="checkbox" name="opportunity" value="jobs"> Job Alerts</label>
+        <label class="option-btn"><input type="checkbox" name="opportunity" value="training"> Skills Workshops</label>
+        <label class="option-btn"><input type="checkbox" name="opportunity" value="business"> Business Funding Support</label>
+        <label class="option-btn"><input type="checkbox" name="opportunity" value="farming"> Community Agriculture</label>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="finishProcess(false)">Skip & Finish</button>
+      <button class="btn btn-primary" onclick="submitOpportunityData()">Register Details</button>
+    </div>
+  </div>
+
+  <!-- Thank You Screen -->
+  <div class="step" id="step-7">
+    <div style="text-align: center; padding: 40px 0;">
+      <span style="font-size: 48px;">🙌</span>
+      <h2 style="margin-top: 16px;">Thank You!</h2>
+      <p class="step-desc">Your voice helps build a stronger ToughDon. Stay tuned for our live community baseline updates!</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let currentStep = 1;
+  const totalSteps = 6;
+
+  function updateProgress() {
+    const progressPercent = (currentStep / totalSteps) * 100;
+    document.getElementById('progress').style.width = Math.min(progressPercent, 100) + '%';
+  }
+
+  function showStep(step) {
+    document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+    document.getElementById(`step-${step}`).classList.add('active');
+    updateProgress();
+  }
+
+  function nextStep() {
+    if (currentStep < totalSteps) {
+      currentStep++;
+      showStep(currentStep);
+    }
+  }
+
+  function prevStep() {
+    if (currentStep > 1) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  }
+
+  function submitAnonymousData() {
+    nextStep();
+  }
+
+  function submitOpportunityData() {
+    finishProcess(true);
+  }
+
+  function finishProcess(registered) {
+    currentStep = 7;
+    showStep(7);
+  }
+</script>
+
+</body>
+</html>
